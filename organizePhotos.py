@@ -218,7 +218,7 @@ def organize_photos(source_dir, destination_dir, skip_duplicates=True):
     os.makedirs(destination_dir, exist_ok=True)
     
     # Supported photo file extensions
-    photo_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.tiff', '.bmp', '.raw', '.heic'}
+    photo_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.tiff', '.bmp', '.raw', '.heic', '.CR2'}
     
     # Track processed file hashes to avoid duplicates
     processed_file_hashes = set()
