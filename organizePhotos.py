@@ -305,11 +305,40 @@ def organize_photos(source_dir, destination_dir, skip_duplicates=True):
         print(f"  {source}: {count} files")
 
 def main():
-    # Example usage
-    source_directory = "~/path/to/photos"
-    destination_directory = "~/organized-photos"
+    import argparse
     
-    organize_photos(source_directory, destination_directory)
+    # Set up argument parser
+    parser = argparse.ArgumentParser(
+        description='Organize photos into folders by year taken.'
+    )
+    parser.add_argument(
+        'source',
+        help='Source directory containing photos to organize'
+    )
+    parser.add_argument(
+        'destination',
+        help='Destination directory where organized photos will be stored'
+    )
+    parser.add_argument(
+        '--keep-duplicates',
+        action='store_true',
+        help='Keep duplicate files instead of skipping them'
+    )
+    
+    # Parse arguments
+    args = parser.parse_args()
+    
+    # Check if source directory exists
+    if not os.path.exists(args.source):
+        print(f"Error: Source directory '{args.source}' does not exist!")
+        return
+    
+    # Organize photos
+    organize_photos(
+        args.source,
+        args.destination,
+        skip_duplicates=not args.keep_duplicates
+    )
 
 if __name__ == "__main__":
     main()
